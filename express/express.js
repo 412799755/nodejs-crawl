@@ -1,7 +1,6 @@
 var express = require('express')
 var app = express()
-var express = require('express');
-var app = express();
+var path = require('path');
 
 //  主页输出 "Hello World"
 app.get('/', function (req, res) {
@@ -33,7 +32,19 @@ app.get('/ab*cd', function(req, res) {
     console.log("/ab*cd GET 请求");
     res.send('正则匹配');
 })
-
+//静态资源
+var options = {
+    dotfiles: 'ignore',
+    etag: false,
+    extensions: ['htm', 'html'],
+    index: false,
+    maxAge: '1d',
+    redirect: false,
+    setHeaders: function (res, path, stat) {
+        res.set('x-timestamp', Date.now())
+    }
+}
+app.use('/public', express.static(path.join(__dirname, '../public')));
 
 var server = app.listen(8081, function () {
 
