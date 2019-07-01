@@ -20,7 +20,6 @@ app.get('/ab*cd', function(req, res) {
     console.log("/ab*cd GET 请求");
     res.send('正则匹配');
 })
-
 app.post('/process_post', function (req, res) {
     console.log(req.body)
     // // 输出 JSON 格式
@@ -28,7 +27,13 @@ app.post('/process_post', function (req, res) {
         "first_name":req.body.first_name,
         "last_name":req.body.last_name
     };
-    console.log(response);
+    console.log(response,JSON.stringify(response));
+    res.set({
+        'Access-Control-Allow-Origin':'*',
+        'Access-Control-Allow-Methods':'POST',
+        'Access-Control-Allow-Headers':'x-requested-with,content-type'
+    })
+    // res.end(JSON.stringify('fwa'));
     res.end(JSON.stringify(response));
 })
 //静态资源
