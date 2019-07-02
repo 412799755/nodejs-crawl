@@ -11,16 +11,31 @@
     <input type="submit" value="Submit">
 </form>
 <script>
-        var xhr = new XMLHttpRequest()
-        xhr.open('post','http://127.0.0.1:8081/process_post',true);
-        xhr.setRequestHeader('content-type','application/x-www-form-urlencoded');
-        xhr.onreadystatechange = function(){
-            if( xhr.readyState==4 && xhr.status==200){
-                var txt = xhr.responseText;
+        // var xhr = new XMLHttpRequest()
+        // xhr.open('post','http://127.0.0.1:8081/process_post',true);
+        // xhr.setRequestHeader('content-type','application/x-www-form-urlencoded');
+        // xhr.onreadystatechange = function(){
+        //     console.log(xhr.readyState,xhr.status)
+        //     if( xhr.readyState==4 && xhr.status==200){
+        //         var txt = xhr.responseText;
+        //         //拿到数据后更新页面
+        //     }
+        // }
+        // xhr.send('uname=BB','password=123');
+
+        var xhr1 = new XMLHttpRequest()
+        console.log(xhr1.readyState,xhr1.status)
+        xhr1.open('get','https://test.schbrain.com/api/homepage/config?userToken=15026683096eyJhbGciOiJIUzUxMiJ9.eyJleHAiOjE1NjIyOTE0MTcsInN1YiI6IjMwNzU2NTAxMDAzMTQ4MDgzMiIsImNyZWF0ZWQiOjE1NjE2ODY2MTc4Mzh9.X5Yjts7_zN93B-t5EsDbSSvE-f1WHa0bmbAmf4_4RvLSYI_7m5hhy-4ekMR2CEcS3HP5a0fUGvZ5rSVor5w_xw',true);
+        // xhr.setRequestHeader('content-type','application/x-www-form-urlencoded');
+        console.log(xhr1.readyState,xhr1.status)
+        xhr1.onreadystatechange = function(){
+            console.log(xhr1.readyState,xhr1.status)
+            if( xhr1.readyState==4 && xhr1.status==200){
+                // var txt = xhr.responseText;
                 //拿到数据后更新页面
             }
         }
-        xhr.send('uname=BB','password=123');
+        xhr1.send();
 </script>
 </body>
 </html>
