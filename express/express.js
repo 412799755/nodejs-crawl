@@ -3,6 +3,8 @@ var app = express()
 var fs = require("fs");
 var path = require('path');
 var multer  = require('multer');
+var cookieParser = require('cookie-parser')
+var util = require('util');
 
 app.use(express.json({
     inflate:true,
@@ -14,9 +16,11 @@ app.use(express.json({
 }))
 app.use(express.urlencoded({ extended: false }));
 app.use(multer({ dest: '/tmp/'}).array('image'));
+app.use(cookieParser())
 //  主页输出 "Hello World"
 app.get('/', function (req, res) {
     console.log("主页 GET 请求");
+    console.log("Cookies: " + util.inspect(req.cookies));
     res.send('Hello GET');
 })
 // 对页面 abcd, abxcd, ab123cd, 等响应 GET 请求
