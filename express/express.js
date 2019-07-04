@@ -21,7 +21,7 @@ app.use(cookieParser())
 app.get('/', function (req, res) {
     console.log("主页 GET 请求");
     console.log("Cookies: " + util.inspect(req.cookies));
-    res.send('Hello GET');
+    res.send('福娃');
 })
 // 对页面 abcd, abxcd, ab123cd, 等响应 GET 请求
 app.get('/ab*cd', function(req, res) {
@@ -90,3 +90,7 @@ var server = app.listen(8081,'172.18.0.113', function () {
     console.log("应用实例，访问地址为 http://%s:%s", host, port)
 
 })
+
+var data = fs.readFileSync('name.txt')
+
+console.log( JSON.parse(data.toString()).fwaf)
