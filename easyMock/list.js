@@ -29,7 +29,7 @@ app.use(function (req, res, next) {
 });
 
 
-var server = app.listen(8888,'172.18.1.160', function () {
+var server = app.listen(8888,'172.18.1.107', function () {
 
     var host = server.address().address
     var port = server.address().port
@@ -207,7 +207,7 @@ app.get('/api/clock/punches/currentDay', function (req, res) {
     res.send(JSON.stringify(response));
 })
 //获取某个打卡任务的每天详情
-app.get('/api/clock/punches/\d+/1', function (req, res) {
+app.get('/api/clock/punches/(\\d+)/1', function (req, res) {
     console.log(req.body)
     // // 输出 JSON 格式
     var response = {
@@ -306,7 +306,7 @@ app.get('/api/clock/punches/\d+/1', function (req, res) {
     // res.send(JSON.stringify(response));
     res.send(JSON.stringify(response));
 })
-app.get('/api/clock/punches/\d+/2', function (req, res) {
+app.get('/api/clock/punches/(\\d+)/2', function (req, res) {
     console.log(req.body)
     // // 输出 JSON 格式
     var response = {
@@ -406,13 +406,89 @@ app.get('/api/clock/punches/\d+/2', function (req, res) {
     res.send(JSON.stringify(response));
 })
 
-app.get('/newTask/getClassList', function (req, res) {
+app.get('/api/clock/punches/students', function (req, res) {
     console.log(req.body)
     // // 输出 JSON 格式
     var response = {
-        'data':[{ name: '501班',id:1 }, { name: '502班',id:2 },{ name: '501班',id:3 }, { name: '502班',id:4 },],
-        'code':0,
-        status:'0'
+        "code": 0,
+        "status": "0",
+        "data": {
+            "classList": [
+                {
+                    "className": "802",
+                    "classId": 465551053014835200
+                },
+                {
+                    "className": "901",
+                    "classId": 465551129967730688
+                },
+                {
+                    "className": "902",
+                    "classId": 465551136515039232
+                },
+                {
+                    "className": "903",
+                    "classId": 465551143741825024
+                },
+                {
+                    "studentList": null,
+                    "className": "904",
+                    "classId": 465551151413207040
+                },
+                {
+                    "className": "905",
+                    "classId": 465551158979731456
+                },
+                {
+                    "className": "906",
+                    "classId": 465551166990852096
+                },
+                {
+                    "className": "907",
+                    "classId": 465551174087614464
+                },
+                {
+                    "className": "908",
+                    "classId": 465551181146628096
+                },
+                {
+                    "className": "909",
+                    "classId": 465551188742512640
+                },
+                {
+                    "className": "910",
+                    "classId": 465551196040601600
+                },
+                {
+                    "className": "911",
+                    "classId": 465551203091226624
+                },
+                {
+                    "className": "912",
+                    "classId": 465551209890193408
+                },
+                {
+                    "className": "913",
+                    "classId": 465551219839082496
+                },
+                {
+                    "className": "914",
+                    "classId": 465551227082645504
+                }
+            ],
+            "children": [
+                {
+                    "id": "201807101556000006",
+                    "name": "闾佳琪",
+                    "gender": 2
+                },
+                {
+                    "id": "201807101556000005",
+                    "name": "陈逸扬",
+                    "gender": 2
+                }
+            ]
+        }
     };
     console.log(response,JSON.stringify(response));
     res.set({
@@ -426,14 +502,32 @@ app.get('/newTask/getClassList', function (req, res) {
     res.send(JSON.stringify(response));
 })
 
-app.get('/newTask/getPeopleByClassId', function (req, res) {
-    console.log(req.query.id)
+app.get('/api/clock/punches/students/*', function (req, res) {
+    console.log(123)
     // // 输出 JSON 格式
-    let result = [[{ name: '张三', id: 1}, { name: '李四', id: 2 }],[{ name: '张分割', id: 3}, { name: '李四', id: 4 }]
-        ,[{ name: 'gw ', id: 5}, { name: '李四', id: 6 }]  ,[{ name: '福娃 ', id: 7}, { name: '李四', id: 8 }]
-    ]
     var response = {
-        'data':result[+req.query.id-1],
+        'data':[
+            {
+                "id": "307566540117774336",
+                "name": "王子洋",
+                "gender": 2
+            },
+            {
+                "id": "307566540138745856",
+                "name": "陈一诺",
+                "gender": 2
+            },
+            {
+                "id": "307566540163911680",
+                "name": "韩一宁",
+                "gender": 2
+            },
+            {
+                "id": "307566540180688896",
+                "name": "金乐怡",
+                "gender": 2
+            }
+        ],
         'code':0,
         status:'0'
     };
